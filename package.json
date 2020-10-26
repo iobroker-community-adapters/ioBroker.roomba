@@ -21,7 +21,7 @@
   "description": "Connect your iRobot Roomba to ioBroker",
   "devDependencies": {
     "@iobroker/testing": "^2.0.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.0",
     "chai": "^4.2.0",
     "gulp": "^4.0.2",
     "mocha": "^7.0.1"
