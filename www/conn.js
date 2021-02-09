@@ -399,8 +399,8 @@ var servConn = {
     },
     getVersion:       function (callback) {
         if (!this._checkConnection('getVersion', arguments)) return;
-
-        this._socket.emit('getVersion', function (version) {
+ 
+        this._socket.emit('getVersion', function (nl,version,module) {
             if (callback) callback(version);
         });
     },
@@ -414,7 +414,8 @@ var servConn = {
             console.log('socket.io not initialized');
             return;
         }
-        this._socket.emit('getVersion', function (version) {
+        
+        this._socket.emit('getVersion', function (nl,version,module) {
             if (callback)
                 callback(version);
         });
