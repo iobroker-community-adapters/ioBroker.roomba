@@ -304,6 +304,9 @@ You may edit the variable ```message``` to any notification you would like to re
 
 ## Changelog
 
+### 1.1.2 (2021-05-01)
+- (thost96) fixed has wrong type "number" (see [#45](https://github.com/iobroker-community-adapters/ioBroker.roomba/issues/45))
+
 ### 1.1.1 (2020-02-16)
 - (Zefau) moved development to Community Repository
 

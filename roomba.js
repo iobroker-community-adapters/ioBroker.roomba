@@ -650,7 +650,7 @@ function updPreferences(preferences)
 		}
 	});
 	
-	library.set({'node': 'refreshedTimestamp', 'description': 'Timestamp of last update', 'role': 'value'}, Math.floor(Date.now()/1000));
+	library.set({'node': 'refreshedTimestamp', 'description': 'Timestamp of last update', 'role': 'state', 'type': 'number'}, Math.floor(Date.now()/1000));
 	library.set({'node': 'refreshedDateTime', 'description': 'DateTime of last update', 'role': 'text'}, library.getDateTime(Date.now()));
 	
 	// refresh

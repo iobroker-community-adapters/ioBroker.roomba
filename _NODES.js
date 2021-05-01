@@ -99,7 +99,7 @@ module.exports =
 	{'node': 'states.binInserted', 'description': 'State whether bin is inserted', 'preference': 'bin.present', 'role': 'indicator', 'type': 'boolean'},
 	{'node': 'states.binFull', 'description': 'State whether bin status is full', 'preference': 'bin.full', 'role': 'indicator', 'type': 'boolean'},
 	{'node': 'states.status', 'description': 'Current status of the robot', 'preference': 'cleanMissionStatus.phase', 'role': 'text'},
-	{'node': 'states.signal', 'description': 'Signal strength', 'preference': 'signal.snr', 'role': 'value'},
+	{'node': 'states.signal', 'description': 'Signal strength', 'preference': 'signal.snr', 'role': 'state', 'type': 'number'},
 	
 	// statistics
 	{'node': 'statistics', 'description': 'Statistics', 'role': 'channel'},
