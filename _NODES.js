@@ -29,13 +29,13 @@ module.exports =
 	{'node': 'missions.current.mapHTML', 'description': 'HTML for the map of current mission', 'role': 'text'},
 	{'node': 'missions.current.mapSize', 'description': 'Size (in px) of the map', 'role': 'json'},
 	{'node': 'missions.current.path', 'description': 'Path of current mission', 'role': 'text'},
-	{'node': 'missions.current.id', 'description': 'ID of current mission', 'role': 'text'},
+	{'node': 'missions.current.id', 'description': 'ID of current mission', 'role': 'value', 'type': 'number'},
 
-	{'node': 'missions.current.started', 'description': 'Timestamp when the current mission has started', 'role': 'value'},
+	{'node': 'missions.current.started', 'description': 'Timestamp when the current mission has started', 'role': 'value', 'type': 'number'},
 	{'node': 'missions.current.startedDateTime', 'description': 'DateTime when the current mission has started', 'role': 'text'},
 	{'node': 'missions.current.ended', 'description': 'Timestamp when the current mission has ended', 'role': 'value'},
 	{'node': 'missions.current.endedDateTime', 'description': 'DateTime when the current mission has ended', 'role': 'text'},
-	{'node': 'missions.current.runtime', 'description': 'Runtime in seconds of the current mission', 'role': 'value'},
+	{'node': 'missions.current.runtime', 'description': 'Runtime in seconds of the current mission', 'role': 'value', 'type': 'number'},
 
 	{'node': 'missions.current.initiator', 'description': 'Initiator of current mission', 'role': 'text'},
 	{'node': 'missions.current.cycle', 'description': 'Cycle mode of current mission', 'role': 'text'},
