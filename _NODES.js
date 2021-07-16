@@ -1,7 +1,7 @@
 module.exports =
 [
 	// commands
-	{'node': 'commands', 'description': 'Actions and information of the cleaning process', 'role': 'channel'},
+	{'node': 'commands', 'description': 'Actions and information of the cleaning process', 'type': 'channel'},
 	{'node': 'commands._runCommand', 'description': 'Run any command (see https://bit.ly/2S57cgM)', 'role': 'text', 'type': 'string', 'common': { 'write': true } },
 	{'node': 'commands.start', 'description': 'Start a cleaning process', 'action': 'start', 'role': 'button.start', 'type': 'boolean'},
 	{'node': 'commands.stop', 'description': 'Stop the current cleaning process', 'action': 'stop', 'role': 'button.stop', 'type': 'boolean'},
@@ -10,18 +10,18 @@ module.exports =
 	{'node': 'commands.dock', 'description': 'Send the robot to the docking station', 'action': 'dock', 'role': 'button', 'type': 'boolean'},
 
 	// commands - last command
-	{'node': 'commands.last', 'description': 'Last processed command', 'role': 'channel'},
+	{'node': 'commands.last', 'description': 'Last processed command', 'type': 'channel'},
 	{'node': 'commands.last.command', 'description': 'Last command sent to robot', 'preference': 'lastCommand.command', 'role': 'text'},
-	{'node': 'commands.last.timestamp', 'description': 'Timestamp last command was sent', 'preference': 'lastCommand.time', 'kind': 'timestamp', 'role': 'value'},
+	{'node': 'commands.last.timestamp', 'description': 'Timestamp last command was sent', 'preference': 'lastCommand.time', 'kind': 'timestamp', 'role': 'value', 'type': 'number'},
 	{'node': 'commands.last.dateTime', 'description': 'DateTime last command was sent', 'preference': 'lastCommand.time', 'kind': 'datetime', 'role': 'text'},
 	{'node': 'commands.last.initiator', 'description': 'Initiator of last command', 'preference': 'lastCommand.initiator', 'role': 'text'},
 
 	// missions
-	{'node': 'missions', 'description': 'Mission information', 'role': 'channel'},
+	{'node': 'missions', 'description': 'Mission information', 'type': 'channel'},
 	{'node': 'missions.history', 'description': 'History of all missions', 'role': 'json'},
 
 	// missions - current
-	{'node': 'missions.current', 'description': 'Mission information about current running mission', 'role': 'channel'},
+	{'node': 'missions.current', 'description': 'Mission information about current running mission', 'type': 'channel'},
 	//{'node': 'missions.current._endMission', 'description': 'End mission and save to history', 'action': true, 'role': 'button', 'type': 'boolean'},
 	{'node': 'missions.current._data', 'description': 'All data of current mission', 'role': 'json'},
 
@@ -44,20 +44,20 @@ module.exports =
 	{'node': 'missions.current.sqm', 'description': 'Cleaned square-meters of current mission', 'role': 'text'},
 
 	// missions - schedule
-	{'node': 'missions.schedule', 'description': 'Schedule of the cleaning process', 'role': 'channel'},
+	{'node': 'missions.schedule', 'description': 'Schedule of the cleaning process', 'type': 'channel'},
 	{'node': 'missions.schedule.cycle', 'description': 'Schedule cycle (Sunday to Saturday)', 'preference': 'cleanSchedule.cycle', 'role': 'text', 'common': { 'write': true } },
 	{'node': 'missions.schedule.hours', 'description': 'Hour to start cycle (Sunday to Saturday)', 'preference': 'cleanSchedule.h', 'role': 'text', 'common': { 'write': true } },
 	{'node': 'missions.schedule.minutes', 'description': 'Minute to start cycle (Sunday to Saturday)', 'preference': 'cleanSchedule.m', 'role': 'text', 'common': { 'write': true } },
 
 	// device
-	{'node': 'device', 'description': 'Device information', 'role': 'channel'},
+	{'node': 'device', 'description': 'Device information', 'type': 'channel'},
 	{'node': 'device.mac', 'description': 'Mac address of the robot', 'preference': 'mac', 'role': 'info.mac'},
 	{'node': 'device.name', 'description': 'Name of the robot', 'preference': 'name', 'role': 'info.name'},
 	{'node': 'device.type', 'description': 'Type of the robot', 'preference': 'sku', 'role': 'text'},
 
 	// device - network
-	{'node': 'device.network', 'description': 'Network settings', 'role': 'channel'},
-	{'node': 'device.network.dhcp', 'description': 'State whether DHCP is activated', 'preference': 'netinfo.dhcp'},
+	{'node': 'device.network', 'description': 'Network settings', 'type': 'channel'},
+	{'node': 'device.network.dhcp', 'description': 'State whether DHCP is activated', 'preference': 'netinfo.dhcp', 'type': 'boolean'},
 	{'node': 'device.network.router', 'description': 'Mac address of router', 'preference': 'netinfo.bssid', 'role': 'text'},
 	{'node': 'device.network.ip', 'description': 'IP address', 'preference': 'netinfo.addr', 'exception': '0.0.0.0', 'kind': 'ip', 'role': 'info.ip'},
 	{'node': 'device.network.subnet', 'description': 'Subnet adress', 'preference': 'netinfo.mask', 'exception': '0.0.0.0', 'kind': 'ip', 'role': 'info.ip'},
@@ -66,8 +66,8 @@ module.exports =
 	{'node': 'device.network.dns2', 'description': 'Secondary DNS address', 'preference': 'netinfo.dns2', 'exception': '0.0.0.0', 'kind': 'ip', 'role': 'info.ip'},
 
 	// device - versions
-	{'node': 'device.versions', 'description': 'Hardware and softare versions', 'role': 'channel'},
-	{'node': 'device.versions.hardwareRev', 'description': 'Hardware Revision', 'preference': 'hardwareRev', 'role': 'text'},
+	{'node': 'device.versions', 'description': 'Hardware and softare versions', 'type': 'channel'},
+	{'node': 'device.versions.hardwareRev', 'description': 'Hardware Revision', 'preference': 'hardwareRev', 'role': 'value', 'type': 'number'},
 	{'node': 'device.versions.batteryType', 'description': 'Battery Type', 'preference': 'batteryType', 'role': 'text'},
 	{'node': 'device.versions.soundVer', 'description': '', 'preference': 'soundVer', 'role': 'text'},
 	{'node': 'device.versions.uiSwVer', 'description': '', 'preference': 'uiSwVer', 'role': 'text'},
@@ -79,7 +79,7 @@ module.exports =
 	{'node': 'device.versions.softwareVer', 'description': 'Software Version', 'preference': 'softwareVer', 'role': 'text'},
 
 	// preferences
-	{'node': 'device.preferences', 'description': 'Preferences', 'role': 'channel'},
+	{'node': 'device.preferences', 'description': 'Preferences', 'type': 'channel'},
 	{'node': 'device.preferences.noAutoPasses', 'description': 'One Pass: Roomba will cover all areas with a single cleaning pass.', 'preference': 'noAutoPasses', 'role': 'state', 'type': 'boolean'},
 	{'node': 'device.preferences.noPP', 'description': '', 'preference': 'noPP', 'role': 'state', 'type': 'boolean'},
 	{'node': 'device.preferences.binPause', 'description': '', 'preference': 'binPause', 'role': 'state', 'type': 'boolean'},
@@ -93,8 +93,8 @@ module.exports =
 
 
 	// states
-	{'node': 'states', 'description': 'Status information', 'role': 'channel'},
-	{'node': 'states.battery', 'description': 'Battery level of the robot', 'preference': 'batPct', 'role': 'value.battery'},
+	{'node': 'states', 'description': 'Status information', 'type': 'channel'},
+	{'node': 'states.battery', 'description': 'Battery level of the robot', 'preference': 'batPct', 'role': 'value.battery', 'type': 'number', 'unit': '%'},
 	{'node': 'states.docked', 'description': 'State whether robot is docked', 'preference': 'dock.known', 'role': 'indicator', 'type': 'boolean'},
 	{'node': 'states.binInserted', 'description': 'State whether bin is inserted', 'preference': 'bin.present', 'role': 'indicator', 'type': 'boolean'},
 	{'node': 'states.binFull', 'description': 'State whether bin status is full', 'preference': 'bin.full', 'role': 'indicator', 'type': 'boolean'},
@@ -102,24 +102,24 @@ module.exports =
 	{'node': 'states.signal', 'description': 'Signal strength', 'preference': 'signal.snr', 'role': 'value', 'type': 'number'},
 
 	// statistics
-	{'node': 'statistics', 'description': 'Statistics', 'role': 'channel'},
+	{'node': 'statistics', 'description': 'Statistics', 'type': 'channel'},
 
 	// statistics - missions
-	{'node': 'statistics.time', 'description': 'Time based Statistics', 'role': 'channel'},
-	{'node': 'statistics.time.avgMin', 'description': '', 'preference': 'bbchg3.avgMin', 'role': 'value'},
+	{'node': 'statistics.time', 'description': 'Time based Statistics', 'type': 'channel'},
+	{'node': 'statistics.time.avgMin', 'description': '', 'preference': 'bbchg3.avgMin', 'role': 'value', 'type': 'number'},
 	{'node': 'statistics.time.hOnDock', 'description': '', 'preference': 'bbchg3.hOnDock', 'role': 'value', 'type': 'number'},
-	{'node': 'statistics.time.nAvail', 'description': '', 'preference': 'bbchg3.nAvail', 'role': 'value'},
-	{'node': 'statistics.time.estCap', 'description': '', 'preference': 'bbchg3.estCap', 'role': 'value'},
-	{'node': 'statistics.time.nLithChrg', 'description': '', 'preference': 'bbchg3.nLithChrg', 'role': 'value'},
-	{'node': 'statistics.time.nNimhChrg', 'description': '', 'preference': 'bbchg3.nNimhChrg', 'role': 'value'},
-	{'node': 'statistics.time.nDocks', 'description': '', 'preference': 'bbchg3.nDocks', 'role': 'value'},
+	{'node': 'statistics.time.nAvail', 'description': '', 'preference': 'bbchg3.nAvail', 'role': 'value', 'type': 'number'},
+	{'node': 'statistics.time.estCap', 'description': '', 'preference': 'bbchg3.estCap', 'role': 'value', 'type': 'number'},
+	{'node': 'statistics.time.nLithChrg', 'description': '', 'preference': 'bbchg3.nLithChrg', 'role': 'value', 'type': 'number'},
+	{'node': 'statistics.time.nNimhChrg', 'description': '', 'preference': 'bbchg3.nNimhChrg', 'role': 'value', 'type': 'number'},
+	{'node': 'statistics.time.nDocks', 'description': '', 'preference': 'bbchg3.nDocks', 'role': 'value', 'type': 'number'},
 
 	// statistics - missions
-	{'node': 'statistics.missions', 'description': 'Mission based Statistics', 'role': 'channel'},
-	{'node': 'statistics.missions.total', 'description': 'Number of cleaning jobs', 'preference': 'bbmssn.nMssn', 'role': 'value'},
-	{'node': 'statistics.missions.succeed', 'description': 'Number of successful cleaning jobs', 'preference': 'bbmssn.nMssnOk', 'role': 'value'},
+	{'node': 'statistics.missions', 'description': 'Mission based Statistics', 'type': 'channel'},
+	{'node': 'statistics.missions.total', 'description': 'Number of cleaning jobs', 'preference': 'bbmssn.nMssn', 'role': 'value', 'type': 'number'},
+	{'node': 'statistics.missions.succeed', 'description': 'Number of successful cleaning jobs', 'preference': 'bbmssn.nMssnOk', 'role': 'value', 'type': 'number'},
 	//{'node': 'statistics.missionsC', 'description': '', 'preference': 'bbmssn.nMssnC', 'role': 'value'},
-	{'node': 'statistics.missions.failed', 'description': 'Number of failed cleaning jobs', 'preference': 'bbmssn.nMssnF', 'role': 'value'},
+	{'node': 'statistics.missions.failed', 'description': 'Number of failed cleaning jobs', 'preference': 'bbmssn.nMssnF', 'role': 'value', 'type': 'number'},
 	//{'node': 'statistics.missions', 'description': '', 'preference': 'bbmssn.aMssnM', 'role': 'value'},
 	//{'node': 'statistics.missions', 'description': '', 'preference': 'bbmssn.aCycleM', 'role': 'value'},
 ];

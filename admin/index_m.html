@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
 	<title>ioBroker.roomba adapter</title>
-	
+
 	<link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
 	<link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
 
@@ -12,33 +12,31 @@
 	<script src="../../lib/js/materialize.js"></script>
 	<script src="../../js/adapter-settings.js"></script>
 	<script>
-	<!--
-	// load
 	function load(settings, onChange)
 	{
 		// get web instances
 		getAdapterInstances('web', function(res)
 		{
 			if (!res) return;
-			
+
 			var instances = '';
 			for (var t = 0; t < res.length; t++)
 				instances += '<option value="' + res[t]._id + '">' + res[t].common.name + ' [' + res[t]._id.replace('system.adapter.', '') + ']</option>';
-			
+
 			$('#instance').html(instances);
             $('#instance .value').val(settings.instance);
 			$('#instance').select();
 		});
-		
+
 		_load(settings, onChange);
 	}
-	
+
 	// save
 	function save(callback)
 	{
 		_save(callback);
 	}
-	
+
 	// page loaded
 	$(window).on('load', function()
 	{
@@ -55,13 +53,13 @@
 					fieldEncrypted.val('true').focus().trigger('change');
 					encrypted = true;
 				}
-				
+
 				// error
 				else
 					_log(translateWord('message_error-nopassword')+' ('+res.error+')', 'error');
 			});
 		}
-		
+
 		// retrieve ip and authentication credentials
 		var encrypted = false;
 		var fieldUser = $('#username');
@@ -69,41 +67,41 @@
 		var fieldEncrypted = $('#encrypted');
 		var fieldClearText = $('#cleartext');
 		var fieldIp = $('#ip');
-		
+
 		$('#button_getCredentials').on('click', function()
 		{
 			fieldIp.val('').focus().trigger('change');
 			fieldPassword.val('').focus().trigger('change');
 			fieldUser.val('').focus().trigger('change');
-			
+
 			$('#log').html('');
 			_log(translateWord('message_action-connecting'));
-			
+
 			// cancel
 			var getRobotData = setTimeout(function() {_log(translateWord('message_error-noconnection'), 'error');}, 7000);
-			
+
 			// get credentials
 			sendTo(null, 'getRobotData', null, function(res)
 			{
 				_log(translateWord('message_info-connected'));
 				_log(translateWord('message_action-getcredentials'));
 				clearTimeout(getRobotData);
-				
+
 				if (res.result === true)
 				{
 					_log(translateWord('message_success-gotcredentials'), 'success');
 					fieldIp.val(res.data.ip).focus().trigger('change');
 					fieldUser.val(res.data.user).focus().trigger('change');
-					
+
 					// get password
 					getPassword(res.data.ip);
 				}
-				
+
 				// error
 				else
 				{
 					_log(translateWord('message_error-nocredentials')+' ('+JSON.stringify(res.error)+')', 'error');
-					
+
 					// get IP
 					_log(translateWord('message_action-getip'));
 					sendTo(null, 'getIp', null, function(res)
@@ -112,11 +110,11 @@
 						{
 							_log(translateWord('message_success-gotip'), 'success');
 							fieldIp.val(res.data.ip).focus().trigger('change');
-							
+
 							// get password
 							getPassword(res.data.ip);
 						}
-						
+
 						// error
 						else
 							_log(translateWord('message_error-noip')+' ('+res.error+')', 'error');
@@ -124,13 +122,13 @@
 				}
 			});
 		});
-		
+
 		// toggle password
 		$('.togglePassword').on('click', function() {togglePassword()});
 		function togglePassword()
 		{
 			$('#password').attr('type', $('#password').attr('type') == 'password' ? 'text' : 'password');
-			
+
 			/*
 			var pw = $('#password').val();
 			if (pw)
@@ -140,7 +138,7 @@
 				{
 					$('.hidePassword').addClass('hidden');
 					$('.showPassword').removeClass('hidden');
-					
+
 					// decrypt password
 					sendTo(null, 'decrypt', {password: pw}, function(res)
 					{
@@ -149,13 +147,13 @@
 							_log(translateWord('message_success-gotpassword'), 'success');
 							fieldClearText.val(res.data.cleartext).focus().trigger('change');
 						}
-						
+
 						// error
 						else
 							_log(translateWord('message_error-nopassword')+' ('+res.error+')', 'error');
 					});
 				}
-				
+
 				// hide cleartext
 				else
 				{
@@ -167,7 +165,7 @@
 				_log(translateWord('message_error-nopasswordgiven'), 'error');
 			*/
 		}
-		
+
 		// validation
 		$('.btn.btn-save, .btn.btn-save-close').on('click', function()
 		{
@@ -183,7 +181,7 @@
 				}
 			});
 			*/
-			
+
 			$('#refresh').val(parseInt($('#refresh').val()));
 		});
 	});
@@ -200,7 +198,7 @@
 			margin: 0 !important;
 			background-color: #fff; /*#acd8fa*/
 		}
-		
+
 		#log {
 			background-color: #fff;
 			padding: 0 20px;
@@ -208,7 +206,7 @@
 		.log.error {color: #a00}
 		.log.success {color: #0a0}
 		.log.info {color: #00a}
-		
+
 		img {margin: 5px}
 		a.active {font-weight: bold}
 		p.title {margin-bottom: 0}
@@ -218,10 +216,10 @@
 			margin: 0;
 			color: #c00;
 		}
-		
-		
+
+
 		a.togglePassword:hover {text-decoration: underline}
-	// -->
+	-->
 	</style>
 </head>
 <body>
@@ -230,7 +228,7 @@
 <div class="m adapter-container">
 
 	<div class="row">
-		
+
 		<!-- TABS -->
 		<div class="col s12">
 			<ul class="tabs">
@@ -241,10 +239,10 @@
 				<li class="tab col s3"><a class="translate" href="#donate">tab_donate</a></li>
 			</ul>
 		</div>
-		
+
 		<!-- DONATE -->
 		<div id="donate" class="col s12">
-		
+
 			<!-- Donation -->
 			<div class="row">
 				<div class="col s12 m12">
@@ -255,23 +253,23 @@
 					</div>
 					<div class="row box">
 						<p class="subtitle translate">donateInformation</p>
-						
+
 						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="margin: 10 0 20 30">
 							<input type="hidden" name="cmd" value="_s-xclick" />
 							<input type="hidden" name="hosted_button_id" value="DJR9PHP53L8Q2" />
 							<input type="image" src="https://www.paypalobjects.com/webstatic/de_DE/i/de-pp-logo-200px.png" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
 						</form>
-						
+
 					</div>
-					
+
 				</div>
 			</div>
-			
+
 		</div>
-		
+
 		<!-- CONFIG -->
 		<div id="config" class="col s12">
-			
+
 			<div class="row">
 				<div class="col s12 m12">
 					<div class="row" style="margin-bottom: 0">
@@ -304,7 +302,7 @@
 							</div>
 							<div class="row">
 								<input type="hidden" class="value" id="encrypted" />
-								
+
 								<div class="input-field col s6 m6">
 									<input class="value" id="username" type="text"/>
 									<label for="username" class="translate">username</label>
@@ -328,7 +326,7 @@
 							<ol id="log"></ol>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 			<div class="row">
@@ -339,31 +337,31 @@
 						</div>
 					</div>
 					<div class="row box">
-						
+
 						<div class="input-field col s4 m4">
 							<input class="value" type="number" id="refresh" placeholder="60" />
 							<label for="refresh" class="translate">refresh</label>
 						</div>
-						
+
 						<div class="input-field col s4 m4">
 							<input class="value" type="text" id="pathColor" placeholder="#ff0000" />
 							<label for="pathColor" class="translate">pathColor</label>
 						</div>
-						
+
 						<div class="input-field col s4 m4">
 							<input class="value" type="checkbox" id="debug" />
 							<label for="debug" class="translate">debug</label>
 						</div>
-						
+
 					</div>
-					
+
 				</div>
 			</div>
-			
+
 		</div>
-		
+
 	</div>
-	
+
 </div>
 
 </body>
