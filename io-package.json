@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "roomba",
-        "version": "1.1.2",
+        "version": "1.1.3",
         "title": "iRobot Roomba",
         "titleLang": {
             "en": "iRobot Roomba",
@@ -28,15 +28,27 @@
             "zh-cn": "连接你的主要扫地以ioBroker"
         },
         "news": {
+            "1.1.3": {
+                "en": "Adjust some types to prevent js-controller 3.3 warnings\nfix hanging state loading in frontend\nfixed link in canvas warning",
+                "de": "Passen Sie einige Typen an, um js-controller 3.3-Warnungen zu verhindern\nBeheben des Ladens des hängenden Zustands im Frontend\nFester Link in Canvas-Warnung",
+                "ru": "Настройте некоторые типы, чтобы предотвратить предупреждения js-controller 3.3\nисправить загрузку состояния зависания в веб-интерфейсе\nисправлена ссылка в предупреждении на холсте",
+                "pt": "Ajuste alguns tipos para evitar avisos do js-controller 3.3\nconsertar carregamento de estado suspenso no frontend\nlink fixo no aviso de tela",
+                "nl": "Pas sommige typen aan om js-controller 3.3-waarschuwingen te voorkomen\nfix hangende staat laden in frontend\nvaste link in canvaswaarschuwing",
+                "fr": "Ajustez certains types pour empêcher les avertissements js-controller 3.3\ncorrection du chargement de l'état suspendu dans le frontend\nlien fixe dans l'avertissement de canevas",
+                "it": "Regola alcuni tipi per evitare avvisi di js-controller 3.3\ncorreggere il caricamento dello stato di sospensione nel frontend\ncollegamento fisso in avviso canvas",
+                "es": "Ajuste algunos tipos para evitar advertencias de js-controller 3.3\narreglar la carga del estado colgante en la interfaz\nenlace fijo en la advertencia de lienzo",
+                "pl": "Dostosuj niektóre typy, aby zapobiec ostrzeżeniom js-controller 3.3\nnapraw ładowanie stanu zawieszenia w interfejsie użytkownika;\nnaprawiono link w ostrzeżeniu kanwy",
+                "zh-cn": "调整部分类型防止js-controller 3.3警告\n修复前端挂起状态加载\n画布警告中的固定链接"
+            },
             "1.0.7": {
-				"en": "- fixed bugs occurring when Roomba is on a mission"
-			},
+                "en": "- fixed bugs occurring when Roomba is on a mission"
+            },
             "1.0.6": {
-				"en": "- added loading screen to web interface"
-			},
+                "en": "- added loading screen to web interface"
+            },
             "1.0.5": {
-				"en": "- fixed failing secure connection\n- fixed broken credential retrieval\n- fixed broken refresh"
-			},
+                "en": "- fixed failing secure connection\n- fixed broken credential retrieval\n- fixed broken refresh"
+            },
             "1.0.4": {
                 "en": "- fixed password retrieval\n- fixed German translations\n- added donations button\n- updated dorita980 dependency to v3.1.3\n- updated canvas dependency to v2.6.0",
                 "de": "- fehlerhafter Passwort-Abruf behoben\n- Deutsche Übersetzungen korrigiert\n- Spenden-Button hinzugefügt\n- Paket dorita980 auf v3.1.3 aktualisiert\n- Paket canvas auf v2.6.0 aktualisiert",
@@ -228,18 +240,6 @@
                 "es": "Mejora de la interfaz de administración para recuperar automáticamente las credenciales de autenticación",
                 "pl": "Ulepszony interfejs administratora, aby automatycznie uzyskać poświadczenia uwierzytelniania ",
                 "zh-cn": "改进管理界面自动检索身份验证的凭据"
-            },
-            "0.1.0": {
-                "en": "initial checkin",
-                "de": "Erste version",
-                "ru": "первая версия",
-                "pt": "inicial do check-in",
-                "nl": "eerste checkin",
-                "fr": "initiale de l'archivage",
-                "it": "iniziale checkin",
-                "es": "inicial checkin",
-                "pl": "początkowa Чекин",
-                "zh-cn": "最初的签"
             }
         },
         "license": "MIT",
