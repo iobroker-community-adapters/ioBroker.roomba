@@ -305,7 +305,7 @@ You may edit the variable ```message``` to any notification you would like to re
 
 ## Changelog
 
-### __WORK IN PROGRESS__
+### 1.1.4 (2021-07-19)
 * (Apollon77) Adjust some types to prevent js-controller 3.3 warnings
 * (thost96) fix hanging state loading in frontend
 * (thost96) fixed link in canvas warning
