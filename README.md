@@ -308,6 +308,7 @@ You may edit the variable ```message``` to any notification you would like to re
 ### ___WORK IN PROGRESS__
 * (Apollon77) Adjust some types to prevent js-controller 3.3 warnings
 * (thost96) fix hanging state loading in frontend
+* (thost96) fixed link in canvas warning
 
 ### 1.1.1 (2020-02-16)
 - (Zefau) moved development to Community Repository

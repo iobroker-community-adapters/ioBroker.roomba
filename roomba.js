@@ -80,7 +80,7 @@ function startAdapter(options)
 			createCanvas = _canvas.createCanvas;
 		}
 		catch(e) {
-			adapter.log.warn('Canvas not installed! Thus, no map drawings are possible. Please see installation instructions on Github (https://github.com/Zefau/ioBroker.roomba#installation).');
+			adapter.log.warn('Canvas not installed! Thus, no map drawings are possible. Please see installation instructions on Github (https://github.com/iobroker-community-adapters/ioBroker.roomba#installation).');
 			adapter.log.debug(e.message);
 		}
 
