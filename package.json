@@ -20,7 +20,7 @@
   "deprecated": false,
   "description": "Connect your iRobot Roomba to ioBroker",
   "devDependencies": {
-    "@alcalzone/release-script": "^2.2.0",
+    "@alcalzone/release-script": "^3.5.8",
     "@iobroker/testing": "^2.4.4",
     "axios": "^0.27.0",
     "chai": "^4.3.4",
