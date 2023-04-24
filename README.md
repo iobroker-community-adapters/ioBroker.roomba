@@ -12,7 +12,7 @@ Based on the dorita980 library https://github.com/karlvr/dorita980#readme
 [![Downloads](https://img.shields.io/npm/dm/iobroker.roomba.svg)](https://www.npmjs.com/package/iobroker.roomba)
 
 [![NPM](https://nodei.co/npm/iobroker.roomba.png?downloads=true)](https://nodei.co/npm/iobroker.roomba/)
- 
+
 **Table of contents**
 1. [Features](#features)
 2. [Installation](#installation)
