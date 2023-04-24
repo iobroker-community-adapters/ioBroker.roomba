@@ -2,7 +2,7 @@
 # ioBroker.roomba
 Connect your iRobot Roomba to ioBroker.
 
-Based on the dorita980 library https://github.com/koalazak/dorita980#readme
+Based on the dorita980 library https://github.com/karlvr/dorita980#readme
 
 [![Number of Installations](http://iobroker.live/badges/roomba-installed.svg)](http://iobroker.live/badges/roomba-installed.svg)
 [![Stable Version](http://iobroker.live/badges/roomba-stable.svg)](http://iobroker.live/badges/roomba-stable.svg)
@@ -94,7 +94,7 @@ To automatically setup ioBroker.roomba following the instructions in the admin p
 If the automated process fails retrieving your credentials, please use the manual setup.
 
 ### Manual setup
-For manual setup see https://github.com/koalazak/dorita980#how-to-get-your-usernameblid-and-password.
+For manual setup see https://github.com/karlvr/dorita980#how-to-get-your-usernameblid-and-password.
 
 
 ## Supported Roomba's / Firmware versions
@@ -207,7 +207,7 @@ After sucessful setup the following channels and states will be created:
 
 
 ## Description of Preferences _(incomplete)_
-The following payload will be received when calling ```getPreferences()``` (see https://github.com/koalazak/dorita980#getpreferences):
+The following payload will be received when calling ```getPreferences()``` (see https://github.com/karlvr/dorita980#getpreferences):
 
 | Object | Index | Type | Description | ioBroker State |
 | ------ | ----- | ---- | ----------- | -------------- |
