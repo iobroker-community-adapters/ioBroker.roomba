@@ -7,7 +7,7 @@ let _dgram = require('dgram');
 let _tls = require('tls');
 let _http = require('http');
 let _request = require('request');
-let _dorita980 = require('dorita980');
+let _dorita980 = require('@karlvr/dorita980');
 let _canvas;
 
 
