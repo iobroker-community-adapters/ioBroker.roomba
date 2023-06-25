@@ -14,18 +14,18 @@
     }
   ],
   "dependencies": {
-    "@iobroker/adapter-core": "^2.5.0",
+    "@iobroker/adapter-core": "^2.6.8",
     "@karlvr/dorita980": "^3.2.0"
   },
   "deprecated": false,
   "description": "Connect your iRobot Roomba to ioBroker",
   "devDependencies": {
     "@alcalzone/release-script": "^2.2.0",
-    "@iobroker/testing": "^2.4.4",
+    "@iobroker/testing": "^4.1.0",
     "axios": "^0.27.0",
     "chai": "^4.3.4",
     "gulp": "^4.0.2",
-    "mocha": "^9.0.2"
+    "mocha": "^10.2.0"
   },
   "homepage": "https://github.com/iobroker-community-adapters/ioBroker.roomba",
   "keywords": [
