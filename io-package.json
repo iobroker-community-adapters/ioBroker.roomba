@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "roomba",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "title": "iRobot Roomba",
     "titleLang": {
       "en": "iRobot Roomba",
@@ -30,6 +30,19 @@
       "zh-cn": "连接你的主要扫地以ioBroker"
     },
     "news": {
+      "1.2.1": {
+        "en": "dorita980 dependency has been upgraded\nsome other dependencies have been upgraded\nAdapter now requires node 16 or newer and js-controller 4.0.24 or newer",
+        "de": "dorita980 Abhängigkeit wurde aktualisisert\neinige andere Abhängigkeiten wurden aktualisisert\nAdapter benötigt nun Node 16 oder neuer und js-controller 4.0.24 oder neuer",
+        "ru": "dorita980 зависимость была обновлена\nнекоторые другие зависимости были обновлены\nАдаптер теперь требует ноды 16 или новее и js-контроллер 4.0.24 или новее",
+        "pt": "dorita980 dependência foi atualizado\nalgumas outras dependências foram atualizadas\nAdaptador agora requer nó 16 ou mais recente e js-controller 4.0.24 ou mais recente",
+        "nl": "dorita980 afhankelijkheid is geüpgradeerd\nandere afhankelijkheid is geüpgradeerd\nAdapter vereist node 16 of Newer en Js-controller 4.0.24 of Newer",
+        "fr": "la dépendance dorita980 a été améliorée\nd'autres dépendances ont été améliorées\nL'adaptateur nécessite maintenant 16 ou plus récent et js-controller 4.0.24 ou plus récent",
+        "it": "dorita980 dipendenza è stato aggiornato\nalcune altre dipendenze sono state aggiornate\nAdattatore ora richiede nodo 16 o più nuovo e js-controller 4.0.24 o più nuovo",
+        "es": "dorita980 dependencia se ha mejorado\nse han mejorado algunas otras dependencias\nAdaptador ahora requiere nodo 16 o más nuevo y js-controller 4.0.24 o más nuevo",
+        "pl": "dorita980 zostało zmodernizowane\nniektóre inne zależności zostały zmodernizowane\nObecnie Adapter wymaga węzła 16 lub nowszego i js-kontrolera 4.0.24 lub nowszego",
+        "uk": "оновлено залежність dorita980\nдеякі інші залежності були оновлені\nАдаптер тепер вимагає вузла 16 або нових і js-controller 4.0.24 або новачків",
+        "zh-cn": "传信\n其他一些依赖性已经升级。\n现在需要没有16个或新成员和四舍五入。"
+      },
       "1.2.0": {
         "en": "dorita980 has been updated (see PR #144)\nRelease script has been updated\nSeveral issues reported by adapter checker have been fixed",
         "de": "dorita980 wurde aktualisiert (siehe PR #144)\nRelease-Skript wurde aktualisiert\nMehrere Probleme, die von Adapter Checker gemeldet wurden behoben",
@@ -75,18 +88,6 @@
         "es": "- fijo de recuperación de contraseña\n- fija las traducciones alemán\n- añadido botón de donaciones\n- actualizado \" dorita980 la dependencia a la v3.1.3\n- actualizado el \"lienzo\" de la dependencia a v2.6.0",
         "pl": "- Naprawiono błąd odzyskiwania hasła \n- poprawiono tłumaczenie niemieckie\n- dodano przycisk darowizny \n- zależność zmiany zaktualizowanego dorita980 na B3.1.3\n- zależność aktualizacja \"płótno\" do V2.6.0",
         "zh-cn": "-固定密码检索\n-固定德语翻译\n-增加捐款按钮\n-更新的dorita980的依赖v3。1.3\n-更新的\"画布\"依赖v2。6.0"
-      },
-      "1.0.2": {
-        "en": "updated dependencies to fix security vulnerabilities in depending packages",
-        "de": "aktualisiert Abhängigkeiten, um Sicherheitslücken in je-Pakete",
-        "ru": "обновлено зависимостей для исправления уязвимостей в зависимости от пакетов",
-        "pt": "atualizado dependências para corrigir vulnerabilidades de segurança em pacotes de acordo",
-        "nl": "bijgewerkt afhankelijkheden op te lossen beveiligingsproblemen in afhankelijk van pakketten",
-        "fr": "mise à jour des dépendances à réparer les failles de sécurité en fonction des paquets",
-        "it": "aggiornato dipendenze per risolvere vulnerabilità di sicurezza in base pacchetti",
-        "es": "actualizado a las dependencias para corregir las vulnerabilidades de seguridad en función de los paquetes",
-        "pl": "aktualizacja zależności do poprawki eliminujące luki w zabezpieczeniach, w zależności od pakietów",
-        "zh-cn": "更新的依赖关系，以解决安全漏洞，根据包"
       }
     },
     "license": "MIT",

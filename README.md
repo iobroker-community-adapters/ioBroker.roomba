@@ -304,8 +304,7 @@ You may edit the variable ```message``` to any notification you would like to re
 
 
 ## Changelog
-
-### **WORK IN PROGRESS**
+### 1.2.1 (2023-08-09)
 
 * (mcm1957) dorita980 dependency has been upgraded
 * (mcm1957) some other dependencies have been upgraded
