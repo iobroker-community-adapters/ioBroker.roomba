@@ -304,8 +304,7 @@ You may edit the variable ```message``` to any notification you would like to re
 
 
 ## Changelog
-
-### **WORK IN PROGRESS**
+### 1.2.0 (2023-08-09)
 
 * (TheRealArthurDent) dorita980 has been updated (see PR #144)
 * (mcm1957) Release script has been updated
@@ -386,9 +385,6 @@ You may edit the variable ```message``` to any notification you would like to re
 ### 0.4.0 (2019-01-08)
 - (zefau) Support for e5 and 600 series (due to support by [dorita980](https://github.com/koalazak/dorita980#readme))
 
-### 0.3.x (2019-01-06)
-- (zefau) Bug fixed (```Mission saved``` loop)
-
 ### 0.3.0 (2019-01-06)
 - (zefau) Image / Map of the current cleaning mission will be created
 - (zefau) Removed encryption of password
@@ -409,7 +405,6 @@ Note: If you are coming from an earlier version, you have to (1) empty your sett
 
 ### 0.1.0 (2018-11-04)
 - (zefau) initial version
-
 
 ## Credits
 ### unofficial API
