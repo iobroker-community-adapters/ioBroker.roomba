@@ -13,6 +13,9 @@
       "email": "zefau@mailbox.org"
     }
   ],
+  "engines": {
+    "node": ">= 16"
+  },
   "dependencies": {
     "@iobroker/adapter-core": "^3.0.3",
     "@karlvr/dorita980": "^3.2.1"

@@ -304,6 +304,13 @@ You may edit the variable ```message``` to any notification you would like to re
 
 
 ## Changelog
+
+### WORK_IN_PROGRESS
+
+* (mcm1957) dorita980 dependency has been upgraded
+* (mcm1957) some other dependencies have been upgraded
+* (mcm1957) Adapter now requires node 16 or newer and js-controller 4.0.24 or newer
+
 ### 1.2.0 (2023-08-09)
 
 * (TheRealArthurDent) dorita980 has been updated (see PR #144)
