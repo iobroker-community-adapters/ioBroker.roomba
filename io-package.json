@@ -13,6 +13,7 @@
             "it": "iRobot Roomba",
             "es": "iRobot Roomba",
             "pl": "iRobot Roomba",
+            "uk": "iRobot Roomba",
             "zh-cn": "iRobot Roomba"
         },
         "desc": {
@@ -25,6 +26,7 @@
             "it": "Collegare il iRobot Roomba per ioBroker",
             "es": "Conecte el iRobot Roomba para ioBroker",
             "pl": "Podłącz iRobot Roomba dla ioBroker",
+            "uk": "Підключіть iRobot Roomba до ioBroker",
             "zh-cn": "连接你的主要扫地以ioBroker"
         },
         "news": {
@@ -256,12 +258,20 @@
         "type": "household",
         "materialize": true,
         "compact": true,
+        "connectionType": "local",
+        "dataSource": "push",
         "enabled": true,
         "dependencies": [
             {
-                "web": ">=1.7.1"
+              "js-controller": ">=4.0.24",
+              "web": ">=1.7.1"
             }
-        ],
+          ],
+          "globalDependencies": [
+            {
+              "admin": ">=5.1.13"
+            }
+        ],      
         "localLink": "%web_protocol%://%ip%:%web_port%/roomba/index.html",
         "messagebox": true,
         "subscribe": "messagebox",

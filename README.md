@@ -305,6 +305,12 @@ You may edit the variable ```message``` to any notification you would like to re
 
 ## Changelog
 
+### **WORK IN PROGRESS**
+
+* (TheRealArthurDent) dorita980 has been updated (see PR #144)
+* (mcm1957) Release script has been updated
+* (mcm1957) Several issues reported by adapter checker have been fixed
+
 ### 1.1.4 (2021-07-19)
 * (Apollon77) Adjust some types to prevent js-controller 3.3 warnings
 * (thost96) fix hanging state loading in frontend
