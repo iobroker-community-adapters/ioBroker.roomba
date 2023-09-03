@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "roomba",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "titleLang": {
       "en": "iRobot Roomba",
       "de": "iRobot Roomba",
@@ -29,6 +29,19 @@
       "zh-cn": "连接你的主要扫地以ioBroker"
     },
     "news": {
+      "1.2.2": {
+        "en": "some dependencies have been upgraded\nBackground color of the adapter settings page has been removed to make it useable in dark mode.",
+        "de": "einige Abhängigkeiten wurden aktualisiert\nDie Hintergrundfarbe der Adapter-Einstellungen Seite wurde entfernt, um diese im dunklen Modus nutzbar zu machen.",
+        "ru": "некоторые зависимости были обновлены\nФоновый цвет страницы настроек адаптера был удален, чтобы он использовался в темном режиме.",
+        "pt": "algumas dependências foram atualizadas\nA cor de fundo da página de configurações do adaptador foi removida para torná-la utilizável no modo escuro.",
+        "nl": "sommige afhankelijkheid is geüpgradeerd\nAchtergrond kleur van de adapter pagina is verwijderd om het nuttig te maken in donkere modus.",
+        "fr": "certaines dépendances ont été améliorées\nLa couleur de fond de la page des paramètres de l'adaptateur a été supprimée pour la rendre utilisable en mode noir.",
+        "it": "alcune dipendenze sono state aggiornate\nIl colore di sfondo della pagina delle impostazioni dell'adattatore è stato rimosso per renderlo utilizzabile in modalità dark.",
+        "es": "se han mejorado algunas dependencias\nEl color de fondo de la página de configuración del adaptador ha sido eliminado para hacerlo utilizable en modo oscuro.",
+        "pl": "niektóre zależności zostały zmodernizowane\nPowtórne kolory ustawień adapterowych zostały usunięte, aby wykorzystać ją w ciemnym trybie.",
+        "uk": "було оновлено деякі залежності\nПідземний колір сторінки налаштувань адаптера було видалено, щоб зробити його використовувати в темному режимі.",
+        "zh-cn": "已经升级了一些依赖性\n变量环境页的背景是被排除在黑暗中。."
+      },
       "1.2.1": {
         "en": "dorita980 dependency has been upgraded\nsome other dependencies have been upgraded\nAdapter now requires node 16 or newer and js-controller 4.0.24 or newer",
         "de": "dorita980 Abhängigkeit wurde aktualisisert\neinige andere Abhängigkeiten wurden aktualisisert\nAdapter benötigt nun Node 16 oder neuer und js-controller 4.0.24 oder neuer",
@@ -75,18 +88,6 @@
       },
       "1.0.5": {
         "en": "- fixed failing secure connection\n- fixed broken credential retrieval\n- fixed broken refresh"
-      },
-      "1.0.4": {
-        "en": "- fixed password retrieval\n- fixed German translations\n- added donations button\n- updated dorita980 dependency to v3.1.3\n- updated canvas dependency to v2.6.0",
-        "de": "- fehlerhafter Passwort-Abruf behoben\n- Deutsche Übersetzungen korrigiert\n- Spenden-Button hinzugefügt\n- Paket dorita980 auf v3.1.3 aktualisiert\n- Paket canvas auf v2.6.0 aktualisiert",
-        "ru": "- Исправлена ошибка восстановления пароля \n- исправлен немецкий перевод\n- добавлена кнопка пожертвования \n- зависимость изменения обновленного dorita980 на В3.1.3\n- зависимость обновлено \"холст\" до V2.6.0",
-        "pt": "- corrigido recuperação de senha\n- corrigido traduções em alemão\n- adicionado botão de doações\n- atualizado dorita980 dependência para v3.1.3\n- atualizado lona dependência para v2.6.0",
-        "nl": "- vaste wachtwoord ophalen\n- vaste duitse vertalingen\n- extra giften knop\n- bijgewerkt dorita980 afhankelijkheid naar v3.1.3\n- bijgewerkt canvas afhankelijkheid naar v2.6.0",
-        "fr": "- correction de récupération de mot de passe\n- correction de traductions allemandes\n- ajout de bouton de dons\n- mise à jour \" dorita980 la dépendance à la v3.1.3\n- mise à jour de \"toile\" de la dépendance à la v2.6.0",
-        "it": "- risolto il recupero della password\n- fissa le traduzioni in tedesco\n- aggiunto pulsante donazioni\n- aggiornato dorita980 di dipendenza a v3.1.3\n- aggiornata la \"tela\" di dipendenza a v2.6.0",
-        "es": "- fijo de recuperación de contraseña\n- fija las traducciones alemán\n- añadido botón de donaciones\n- actualizado \" dorita980 la dependencia a la v3.1.3\n- actualizado el \"lienzo\" de la dependencia a v2.6.0",
-        "pl": "- Naprawiono błąd odzyskiwania hasła \n- poprawiono tłumaczenie niemieckie\n- dodano przycisk darowizny \n- zależność zmiany zaktualizowanego dorita980 na B3.1.3\n- zależność aktualizacja \"płótno\" do V2.6.0",
-        "zh-cn": "-固定密码检索\n-固定德语翻译\n-增加捐款按钮\n-更新的dorita980的依赖v3。1.3\n-更新的\"画布\"依赖v2。6.0"
       }
     },
     "license": "MIT",
