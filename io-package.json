@@ -2,7 +2,6 @@
   "common": {
     "name": "roomba",
     "version": "1.2.1",
-    "title": "iRobot Roomba",
     "titleLang": {
       "en": "iRobot Roomba",
       "de": "iRobot Roomba",
