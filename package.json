@@ -29,7 +29,7 @@
     "@alcalzone/release-script-plugin-manual-review": "^3.7.0",
     "@iobroker/testing": "^4.1.0",
     "axios": "^1.6.5",
-    "chai": "^4.3.10",
+    "chai": "^5.0.0",
     "gulp": "^4.0.2",
     "mocha": "^10.2.0"
   },
