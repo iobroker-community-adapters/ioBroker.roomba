@@ -90,7 +90,10 @@
         "en": "- fixed failing secure connection\n- fixed broken credential retrieval\n- fixed broken refresh"
       }
     },
-    "license": "MIT",
+    "licenseInformation": {
+      "license": "MIT",
+      "type": "free"
+    },
     "platform": "Javascript/Node.js",
     "mode": "daemon",
     "icon": "roomba.png",
@@ -101,6 +104,7 @@
     ],
     "readme": "https://github.com/iobroker-community-adapters/ioBroker.roomba/blob/master/README.md",
     "loglevel": "info",
+    "tier": 2,
     "type": "household",
     "materialize": true,
     "compact": true,
@@ -109,13 +113,12 @@
     "enabled": true,
     "dependencies": [
       {
-        "js-controller": ">=4.0.24",
-        "web": ">=1.7.1"
+        "js-controller": ">=5.0.19"
       }
     ],
     "globalDependencies": [
       {
-        "admin": ">=5.1.13"
+        "admin": ">=6.13.16"
       }
     ],
     "localLink": "%web_protocol%://%ip%:%web_port%/roomba/index.html",
