@@ -17,7 +17,7 @@
     "node": ">= 18"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^3.1.4",
+    "@iobroker/adapter-core": "^3.1.6",
     "@karlvr/dorita980": "^3.2.1"
   },
   "deprecated": false,
