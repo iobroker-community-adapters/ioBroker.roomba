@@ -441,8 +441,7 @@ Icons made by <a href="https://www.flaticon.com/authors/iconnice" title="Iconnic
 The MIT License (MIT)
 
 
-Copyright (c) 2026 iobroker-community-adapters <iobroker-community-adapters@gmx.de>  
-Copyright (c) 2023-2024 ioBroker Community Developers <iobroker-community-adapters@gmx.de>  
+Copyright (c) 2023-2026 iobroker-community-adapters <iobroker-community-adapters@gmx.de>  
 Copyright (c) 2018-2020 Zefau <zefau@mailbox.org>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
