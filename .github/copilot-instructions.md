@@ -1,6 +1,6 @@
 # ioBroker Adapter Development with GitHub Copilot
 
-**Version:** 0.5.6
+**Version:** 0.5.7
 **Template Source:** https://github.com/DrozmotiX/ioBroker-Copilot-Instructions
 
 This file contains instructions and best practices for GitHub Copilot when working on ioBroker adapter development.
@@ -231,7 +231,7 @@ tests.integration(path.join(__dirname, '..'), {
 
 **IMPORTANT:** For every "it works" test, implement corresponding "it fails gracefully" tests.
 
-**Feature-Toggle Failure Example:**
+**Failure Scenario Example:**
 ```javascript
 it('should NOT create daily states when daily is disabled', function () {
     return new Promise(async (resolve, reject) => {
@@ -273,57 +273,6 @@ it('should NOT create daily states when daily is disabled', function () {
             await harness.stopAdapter();
         } catch (error) {
             reject(error);
-        }
-    });
-}).timeout(40000);
-```
-
-**Missing Required Configuration Example:**
-```javascript
-it('should handle missing required configuration gracefully', function () {
-    return new Promise(async (resolve, reject) => {
-        try {
-            harness = getHarness();
-            const obj = await new Promise((res, rej) => {
-                harness.objects.getObject('system.adapter.your-adapter.0', (err, o) => {
-                    if (err) return rej(err);
-                    res(o);
-                });
-            });
-
-            if (!obj) return reject(new Error('Adapter object not found'));
-
-            // Remove required configuration to test failure handling
-            delete obj.native.requiredField;
-
-            await new Promise((res, rej) => {
-                harness.objects.setObject(obj._id, obj, (err) => {
-                    if (err) return rej(err);
-                    res(undefined);
-                });
-            });
-
-            await harness.startAdapterAndWait();
-            await new Promise((res) => setTimeout(res, 10000));
-
-            const connectionState = await new Promise((res, rej) => {
-                harness.states.getState('your-adapter.0.info.connection', (err, state) => {
-                    if (err) return rej(err);
-                    res(state);
-                });
-            });
-
-            if (!connectionState || connectionState.val === false) {
-                console.log('✅ Adapter properly failed with missing configuration');
-                resolve(true);
-            } else {
-                reject(new Error('Adapter should have failed with missing required configuration'));
-            }
-
-            await harness.stopAdapter();
-        } catch (error) {
-            console.log('✅ Adapter correctly threw error with missing configuration:', error.message);
-            resolve(true);
         }
     });
 }).timeout(40000);
@@ -378,58 +327,30 @@ async function encryptPassword(harness, password) {
 - Add npm script: `"test:integration-demo": "mocha test/integration-demo --exit"`
 - Implement clear success/failure criteria
 
-**Example Implementation (`test/integration-demo.js`):**
+**Example Implementation:**
 ```javascript
-const path = require("path");
-const { tests } = require("@iobroker/testing");
+it("Should connect to API with demo credentials", async () => {
+    const encryptedPassword = await encryptPassword(harness, "demo_password");
 
-async function encryptPassword(harness, password) {
-    const systemConfig = await harness.objects.getObjectAsync("system.config");
-    if (!systemConfig?.native?.secret) {
-        throw new Error("Could not retrieve system secret for password encryption");
+    await harness.changeAdapterConfig("your-adapter", {
+        native: {
+            username: "demo@provider.com",
+            password: encryptedPassword,
+        }
+    });
+
+    await harness.startAdapter();
+    await new Promise(resolve => setTimeout(resolve, 60000));
+
+    const connectionState = await harness.states.getStateAsync("your-adapter.0.info.connection");
+
+    if (connectionState?.val === true) {
+        console.log("✅ SUCCESS: API connection established");
+        return true;
+    } else {
+        throw new Error("API Test Failed: Expected API connection. Check logs for API errors.");
     }
-    const secret = systemConfig.native.secret;
-    let result = '';
-    for (let i = 0; i < password.length; ++i) {
-        result += String.fromCharCode(secret[i % secret.length].charCodeAt(0) ^ password.charCodeAt(i));
-    }
-    return result;
-}
-
-tests.integration(path.join(__dirname, ".."), {
-    defineAdditionalTests({ suite }) {
-        suite("API Testing with Demo Credentials", (getHarness) => {
-            let harness;
-
-            before(() => {
-                harness = getHarness();
-            });
-
-            it("Should connect to API with demo credentials", async () => {
-                const encryptedPassword = await encryptPassword(harness, "demo_password");
-
-                await harness.changeAdapterConfig("your-adapter", {
-                    native: {
-                        username: "demo@provider.com",
-                        password: encryptedPassword,
-                    }
-                });
-
-                await harness.startAdapter();
-                await new Promise(resolve => setTimeout(resolve, 60000));
-
-                const connectionState = await harness.states.getStateAsync("your-adapter.0.info.connection");
-
-                if (connectionState?.val === true) {
-                    console.log("✅ SUCCESS: API connection established");
-                    return true;
-                } else {
-                    throw new Error("API Test Failed: Expected API connection. Check logs for API errors.");
-                }
-            }).timeout(120000);
-        });
-    }
-});
+}).timeout(120000);
 ```
 
 ---
@@ -550,10 +471,69 @@ Use JSON-Config format for modern ioBroker admin interfaces.
 
 1. Make your changes to labels/help texts
 2. Run automatic translation: `npm run translate`
-3. Run validation: `node scripts/validate-translations.js`
-4. Remove orphaned keys manually from all translation files
-5. Add missing translations in native languages
-6. Run: `npm run lint && npm run test`
+3. Create validation script (`scripts/validate-translations.js`):
+
+```javascript
+const fs = require('fs');
+const path = require('path');
+const jsonConfig = JSON.parse(fs.readFileSync('admin/jsonConfig.json', 'utf8'));
+
+function extractTexts(obj, texts = new Set()) {
+    if (typeof obj === 'object' && obj !== null) {
+        if (obj.label) texts.add(obj.label);
+        if (obj.help) texts.add(obj.help);
+        for (const key in obj) {
+            extractTexts(obj[key], texts);
+        }
+    }
+    return texts;
+}
+
+const requiredTexts = extractTexts(jsonConfig);
+const languages = ['de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'ru', 'uk', 'zh-cn'];
+let hasErrors = false;
+
+languages.forEach(lang => {
+    const translationPath = path.join('admin', 'i18n', lang, 'translations.json');
+    const translations = JSON.parse(fs.readFileSync(translationPath, 'utf8'));
+    const translationKeys = new Set(Object.keys(translations));
+    
+    const missing = Array.from(requiredTexts).filter(text => !translationKeys.has(text));
+    const orphaned = Array.from(translationKeys).filter(key => !requiredTexts.has(key));
+    
+    console.log(`\n=== ${lang} ===`);
+    if (missing.length > 0) {
+        console.error('❌ Missing keys:', missing);
+        hasErrors = true;
+    }
+    if (orphaned.length > 0) {
+        console.error('❌ Orphaned keys (REMOVE THESE):', orphaned);
+        hasErrors = true;
+    }
+    if (missing.length === 0 && orphaned.length === 0) {
+        console.log('✅ All keys match!');
+    }
+});
+
+process.exit(hasErrors ? 1 : 0);
+```
+
+4. Run validation: `node scripts/validate-translations.js`
+5. Remove orphaned keys manually from all translation files
+6. Add missing translations in native languages
+7. Run: `npm run lint && npm run test`
+
+#### Add Validation to package.json
+
+```json
+{
+  "scripts": {
+    "translate": "translate-adapter",
+    "validate:translations": "node scripts/validate-translations.js",
+    "pretest": "npm run lint && npm run validate:translations"
+  }
+}
+```
 
 #### Translation Checklist
 
