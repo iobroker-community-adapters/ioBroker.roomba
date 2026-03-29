@@ -2,10 +2,10 @@
 const adapterName = require('./io-package.json').common.name;
 const utils = require('@iobroker/adapter-core'); // Get common adapter utils
 
-let _fs = require('fs');
-let _dgram = require('dgram');
-let _tls = require('tls');
-let _http = require('http');
+let _fs = require('node:fs');
+let _dgram = require('node:dgram');
+let _tls = require('node:tls');
+let _http = require('node:http');
 let _request = require('request');
 let _dorita980 = require('@karlvr/dorita980');
 let _canvas;
