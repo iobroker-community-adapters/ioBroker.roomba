@@ -431,6 +431,8 @@ Note: If you are coming from an earlier version, you have to (1) empty your sett
 ### 0.1.0 (2018-11-04)
 - (zefau) initial version
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## Credits
 ### unofficial API
 Thanks to [@koalazak](https://github.com/koalazak) for the [unofficial iRobot Roomba 980 node.js library (SDK)](https://github.com/koalazak/dorita980#readme).
