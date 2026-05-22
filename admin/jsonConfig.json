@@ -1,0 +1,114 @@
+{
+    "type": "panel",
+    "items": {
+        "_authHeader": {
+            "type": "header",
+            "size": 3,
+            "text": "auth",
+            "xs": 12
+        },
+        "_authInfo": {
+            "type": "staticText",
+            "text": "auth_info",
+            "xs": 12
+        },
+        "_authStep1": {
+            "type": "staticText",
+            "text": "authStep1",
+            "xs": 12
+        },
+        "_authStep2": {
+            "type": "staticText",
+            "text": "authStep2",
+            "xs": 12
+        },
+        "_authStep3": {
+            "type": "staticText",
+            "text": "authStep3",
+            "xs": 12
+        },
+        "_authStep4": {
+            "type": "staticText",
+            "text": "authStep4",
+            "xs": 12
+        },
+        "_authStep5": {
+            "type": "staticText",
+            "text": "authStep5",
+            "xs": 12
+        },
+        "ip": {
+            "type": "text",
+            "label": "ip",
+            "xs": 12,
+            "sm": 6,
+            "md": 4,
+            "lg": 4,
+            "xl": 3
+        },
+        "username": {
+            "type": "text",
+            "label": "username",
+            "xs": 12,
+            "sm": 6,
+            "md": 4,
+            "lg": 4,
+            "xl": 3
+        },
+        "password": {
+            "type": "password",
+            "label": "password",
+            "xs": 12,
+            "sm": 6,
+            "md": 4,
+            "lg": 4,
+            "xl": 3
+        },
+        "_getCredentials": {
+            "type": "sendTo",
+            "command": "getRobotData",
+            "jsonData": "{}",
+            "label": "button_getCredentials",
+            "variant": "outlined",
+            "xs": 12,
+            "sm": 6,
+            "md": 4,
+            "lg": 4,
+            "xl": 3
+        },
+        "_otherHeader": {
+            "type": "header",
+            "size": 3,
+            "text": "other",
+            "xs": 12
+        },
+        "refresh": {
+            "type": "number",
+            "label": "refresh",
+            "min": 0,
+            "xs": 12,
+            "sm": 6,
+            "md": 4,
+            "lg": 3,
+            "xl": 3
+        },
+        "pathColor": {
+            "type": "color",
+            "label": "pathColor",
+            "xs": 12,
+            "sm": 6,
+            "md": 4,
+            "lg": 3,
+            "xl": 3
+        },
+        "debug": {
+            "type": "checkbox",
+            "label": "debug",
+            "xs": 12,
+            "sm": 6,
+            "md": 4,
+            "lg": 3,
+            "xl": 3
+        }
+    }
+}

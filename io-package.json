@@ -116,7 +116,9 @@
     "loglevel": "info",
     "tier": 2,
     "type": "household",
-    "materialize": true,
+    "adminUI": {
+      "config": "json"
+    },
     "compact": true,
     "connectionType": "local",
     "dataSource": "push",
