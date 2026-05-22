@@ -1,0 +1,136 @@
+{
+    "type": "panel",
+    "items": {
+        "_auth_header": {
+            "type": "header",
+            "text": "auth",
+            "size": 3,
+            "xs": 12,
+            "newLine": true
+        },
+        "_auth_info": {
+            "type": "staticText",
+            "text": "auth_info",
+            "xs": 12,
+            "newLine": true
+        },
+        "_authStep1": {
+            "type": "staticText",
+            "text": "authStep1",
+            "xs": 12,
+            "newLine": true
+        },
+        "_authStep2": {
+            "type": "staticText",
+            "text": "authStep2",
+            "xs": 12,
+            "newLine": true
+        },
+        "_authStep3": {
+            "type": "staticText",
+            "text": "authStep3",
+            "xs": 12,
+            "newLine": true
+        },
+        "_authStep4": {
+            "type": "staticText",
+            "text": "authStep4",
+            "xs": 12,
+            "newLine": true
+        },
+        "_authStep5": {
+            "type": "staticText",
+            "text": "authStep5",
+            "xs": 12,
+            "newLine": true
+        },
+        "ip": {
+            "type": "text",
+            "label": "ip",
+            "xs": 12,
+            "sm": 6,
+            "md": 6,
+            "lg": 6,
+            "xl": 4,
+            "newLine": true
+        },
+        "_getCredentials": {
+            "type": "sendTo",
+            "command": "getCredentials",
+            "label": "button_getCredentials",
+            "variant": "contained",
+            "result": {
+                "ip": "data.ip",
+                "username": "data.user",
+                "password": "data.password"
+            },
+            "xs": 12,
+            "sm": 6,
+            "md": 4,
+            "lg": 3,
+            "xl": 2
+        },
+        "username": {
+            "type": "text",
+            "label": "username",
+            "xs": 12,
+            "sm": 6,
+            "md": 4,
+            "lg": 3,
+            "xl": 3,
+            "newLine": true
+        },
+        "password": {
+            "type": "password",
+            "label": "password",
+            "xs": 12,
+            "sm": 6,
+            "md": 4,
+            "lg": 3,
+            "xl": 3
+        },
+        "_divider": {
+            "type": "divider",
+            "xs": 12,
+            "newLine": true
+        },
+        "_other_header": {
+            "type": "header",
+            "text": "other",
+            "size": 3,
+            "xs": 12,
+            "newLine": true
+        },
+        "refresh": {
+            "type": "number",
+            "label": "refresh",
+            "min": 0,
+            "default": 60,
+            "xs": 12,
+            "sm": 6,
+            "md": 4,
+            "lg": 3,
+            "xl": 3,
+            "newLine": true
+        },
+        "pathColor": {
+            "type": "color",
+            "label": "pathColor",
+            "default": "#ff0000",
+            "xs": 12,
+            "sm": 6,
+            "md": 4,
+            "lg": 3,
+            "xl": 3
+        },
+        "debug": {
+            "type": "checkbox",
+            "label": "debug",
+            "xs": 12,
+            "sm": 6,
+            "md": 4,
+            "lg": 3,
+            "xl": 3
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "auth": "Las Credenciales De Autenticación",
+    "auth_info": "Rellene las credenciales de autenticación de su robot o recupérelas siguiendo los pasos siguientes.<br /><strong>ATENCIÓN</strong>: Las credenciales de autenticación no son las mismas que se están utilizando en la aplicación de teléfono inteligente!",
+    "authStep1": "1. Asegúrese de que el Adaptador está iniciado.",
+    "authStep2": "2. Asegúrese de que su robot está en la Base de Home y encendido (luz verde encendida).",
+    "authStep3": "3. A continuación, pulse y mantenga pulsado el botón de INICIO en el robot hasta que se reproduce una serie de tonos (unos 2 segundos).",
+    "authStep4": "4. Suelte el botón y su robot flash WIFI de la luz.",
+    "authStep5": "5. A continuación, vuelva aquí y pulse el botón para recuperar IP y credenciales.",
+    "button_getCredentials": "Recuperar IP y Credenciales",
+    "debug": "El Modo De Depuración",
+    "ip": "Dirección IP",
+    "other": "Otros",
+    "password": "Contraseña",
+    "pathColor": "El Color de los tramos de ruta de acceso",
+    "refresh": "El tiempo de actualización (en seg.) las preferencias se recuperan de robot",
+    "username": "Nombre de usuario"
+}

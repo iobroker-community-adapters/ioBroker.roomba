@@ -1,0 +1,17 @@
+{
+    "auth": "Authentifizierung",
+    "auth_info": "Fülle die Anmeldeinformationen für die Authentifizierung des Roomba aus oder folge den nachfolgenden Schritten.<br /><strong>ACHTUNG</strong>: Die Anmeldeinformationen sind nicht die gleichen wie die der Smartphone-App!",
+    "authStep1": "1. Stelle sicher, dass dieser Adapter gestartet ist.",
+    "authStep2": "2. Stelle sicher, dass der Roomba auf der Home-Base steht und eingeschaltet ist.",
+    "authStep3": "3. Drücke und halte die HOME-Taste auf dem Roomba, bis eine kurze Serie von Tönen abgespielt wird (etwa 2 Sekunden).",
+    "authStep4": "4. Taste loslassen und das Roomba WLAN-Licht leuchtet auf.",
+    "authStep5": "5. Wieder hierher kommen und den Button \"IP & Zugangsdaten abrufen\" drücken.",
+    "button_getCredentials": "IP & Zugangsdaten abrufen",
+    "debug": "Debug-Modus für Missionen",
+    "ip": "IP Adresse",
+    "other": "Sonstiges",
+    "password": "Passwort",
+    "pathColor": "Farbe des Roomba Wegs",
+    "refresh": "Intervall (in Sek.) der Aktualisierung der Einstellungen",
+    "username": "Benutzer"
+}

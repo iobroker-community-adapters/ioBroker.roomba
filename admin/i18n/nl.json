@@ -1,0 +1,17 @@
+{
+    "auth": "Verificatiereferenties",
+    "auth_info": "Vul de verificatiereferenties van uw robot in of haal ze op via de volgende stappen.<br /><strong>LET OP</strong>: De aanmeldingsgegevens zijn niet dezelfde als die u gebruikt in de smartphone app!",
+    "authStep1": "1. Zorg ervoor dat deze Adapter is gestart.",
+    "authStep2": "2. Zorg ervoor dat uw robot is op de Thuisbasis en is ingeschakeld (groen licht aan).",
+    "authStep3": "3. Druk vervolgens op en houd de HOME knop op je robot tot het speelt een reeks van tonen (ongeveer 2 seconden).",
+    "authStep4": "4. Laat de knop los en je robot flash WIFI licht.",
+    "authStep5": "5. Kom dan hier terug en druk op de knop voor het ophalen van IP en referenties.",
+    "button_getCredentials": "IP en Referenties ophalen",
+    "debug": "Debug Modus",
+    "ip": "IP-Adres",
+    "other": "Andere",
+    "password": "Wachtwoord",
+    "pathColor": "Kleur van het getekende pad",
+    "refresh": "Vernieuwen tijd (in sec.) de voorkeuren worden opgehaald uit de robot",
+    "username": "Gebruikersnaam"
+}

@@ -1,0 +1,17 @@
+{
+    "auth": "As Credenciais De Autenticação",
+    "auth_info": "Preencha as credenciais de autenticação do seu robô ou recupere-as seguindo os passos subsequentes.<br /><strong>ATENÇÃO</strong>: As credenciais de autenticação não são as mesmas que você está usando no aplicativo de smartphone!",
+    "authStep1": "1. Certifique-se de que este Adaptador está iniciado.",
+    "authStep2": "2. Certifique-se de que o seu robô está na Base de Casa e ligado (luzes verdes acesas).",
+    "authStep3": "3. Em seguida, pressione e segure o botão de início do seu robô até que ele reproduza uma série de tons (cerca de 2 segundos).",
+    "authStep4": "4. Solte o botão e o robô vai piscar a luz WiFi.",
+    "authStep5": "5. Em seguida, volte aqui e pressione o botão para obter IP e credenciais.",
+    "button_getCredentials": "Obter IP e Credenciais",
+    "debug": "Modo De Depuração",
+    "ip": "Endereço IP",
+    "other": "Outros",
+    "password": "Palavra-passe",
+    "pathColor": "Cor do caminho desenhado",
+    "refresh": "Tempo de atualização (seg.) preferências serão recuperados a partir de robô",
+    "username": "Nome de usuário"
+}

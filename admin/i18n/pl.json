@@ -1,0 +1,17 @@
+{
+    "auth": "Poświadczenia Uwierzytelniania",
+    "auth_info": "Wypełnij poświadczenia uwierzytelniania swojego robota lub pobierz je wykonując kolejne kroki.<br /><strong>UWAGA</strong>: Poświadczenia uwierzytelniania nie są takie same jak te używane w aplikacji na smartfonie!",
+    "authStep1": "1. Upewnij się, że ten adapter jest uruchomiony.",
+    "authStep2": "2. Upewnij się, że twój robot znajduje się na głównej bazie danych i jest włączony (zielone światło).",
+    "authStep3": "3. Następnie naciśnij i przytrzymaj przycisk Home na swoim robocie, podczas gdy gra serię dźwięków (około 2 sekund).",
+    "authStep4": "4. Zwolnij przycisk, a twój robot będzie błyskał WiFi światłem.",
+    "authStep5": "5. Wróć tutaj i naciśnij przycisk, aby uzyskać adres IP i dane logowania.",
+    "button_getCredentials": "Pobierz IP i Uprawnienia",
+    "debug": "Tryb Debugowania",
+    "ip": "Adres IP",
+    "other": "Inne",
+    "password": "Hasło",
+    "pathColor": "Kolor narysowanej ścieżki",
+    "refresh": "Czas aktualizacji (sek.) preferencje będą odbierane od robota",
+    "username": "Nazwa użytkownika"
+}

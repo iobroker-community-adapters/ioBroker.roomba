@@ -239,6 +239,41 @@ function startAdapter(options)
 					library.msg(msg.from, msg.command, res, msg.callback);
 				});
 				break;
+
+			case 'getCredentials':
+				getRobotData(function(robotRes)
+				{
+					if (robotRes.result === true)
+					{
+						getPassword(robotRes.data.ip, function(pwRes)
+						{
+							if (pwRes.result === true)
+								library.msg(msg.from, msg.command, {result: true, data: {ip: robotRes.data.ip, user: robotRes.data.user, password: pwRes.data.password}}, msg.callback);
+							else
+								library.msg(msg.from, msg.command, pwRes, msg.callback);
+						});
+					}
+					else
+					{
+						// Fallback: try to get IP address only
+						_dorita980.getRobotIP(function(err, ip)
+						{
+							if (!err && ip)
+							{
+								getPassword(ip, function(pwRes)
+								{
+									if (pwRes.result === true)
+										library.msg(msg.from, msg.command, {result: true, data: {ip: ip, user: '', password: pwRes.data.password}}, msg.callback);
+									else
+										library.msg(msg.from, msg.command, pwRes, msg.callback);
+								});
+							}
+							else
+								library.msg(msg.from, msg.command, robotRes, msg.callback);
+						});
+					}
+				});
+				break;
 		}
 	});
 

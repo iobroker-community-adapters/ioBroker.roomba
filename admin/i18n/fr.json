@@ -1,0 +1,17 @@
+{
+    "auth": "Les Informations D'Authentification",
+    "auth_info": "Remplissez les informations d'authentification de votre robot ou récupérez-les en suivant les étapes suivantes.<br /><strong>ATTENTION</strong>: Les informations d'authentification ne sont pas les mêmes que vous utilisez dans l'application smartphone!",
+    "authStep1": "1. Assurez-vous que cet Adaptateur est commencé.",
+    "authStep2": "2. Assurez-vous que votre robot est sur la Base de la Maison et sous tension (vert s'allume).",
+    "authStep3": "3. Puis appuyez et maintenez le bouton d'ACCUEIL sur votre robot jusqu'à ce qu'il joue une série de tonalités (environ 2 secondes).",
+    "authStep4": "4. Relâchez le bouton et votre robot flash WIFI de la lumière.",
+    "authStep5": "5. Puis revenez ici et appuyez sur le bouton pour récupérer les IP et les informations d'identification.",
+    "button_getCredentials": "Récupérer IP et Informations d'Identification",
+    "debug": "Le Mode De Débogage",
+    "ip": "Adresse IP",
+    "other": "D'autres",
+    "password": "Mot de passe",
+    "pathColor": "La couleur du chemin tracé",
+    "refresh": "Le temps de rafraîchissement (sec.) les préférences seront récupérées à partir de robot",
+    "username": "Nom d'utilisateur"
+}
