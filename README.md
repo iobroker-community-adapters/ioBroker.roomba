@@ -39,9 +39,11 @@ The following features come with this adapter:
 
 
 ## Installation
-ioBroker.roomba needs [canvas](https://www.npmjs.com/package/canvas) in order to draw maps of the Roomba missions. ioBroker will try to install this dependency with ioBroker.roomba installation.
+[canvas](https://www.npmjs.com/package/canvas) is an **optional** dependency. It is only needed to draw the map images (`missions.current.mapImage` / `missions.current.mapHTML`) of the Roomba missions. It is **not** listed as a dependency in `package.json` and is therefore **not** installed automatically - if you don't install it, the adapter will simply log a warning on startup and run without map drawings. All other states, including the raw mission path coordinates (`missions.current.path`), are collected and updated regardless of whether `canvas` is installed.
 
-Though, you probably have to install package dependencies of canvas (and canvas itself) with the following command:
+If installing `canvas` causes problems on your system (e.g. `sudo npm install canvas --unsafe-perm=true` failing due to missing native build dependencies), you can just skip it and use the adapter without map images.
+
+If you do want map images, you probably have to install package dependencies of canvas (and canvas itself) with the following command:
 
 ### Linux
 ```
