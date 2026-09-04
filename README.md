@@ -313,6 +313,7 @@ You may edit the variable ```message``` to any notification you would like to re
 
 ### **WORK IN PROGRESS**
 - (jb-io) Mission tracking (`missions.current.path` and other mission states) now works even if `canvas` is not installed; previously the whole mission listener was skipped without `canvas`, leaving `missions.current.path` empty. Only the map image drawing (`mapImage` / `mapHTML`) still requires `canvas`.
+- (jb-io) Fixed a mission that was already ended and saved to the history being continued instead of starting a new one, which could leave `missions.current.path` empty.
 - (copilot) Adapter requires node.js >= 22 now
 - (iobroker-bot) Adapter requires node.js >= 20 now.
 - (copilot) Adapter requires admin >= 7.7.22 now

@@ -692,7 +692,8 @@ function mapMission(res)
 	}
 
 	// create new mission (and map, if canvas is available) once mission starts
-	if (mission === null || mission.id !== res.cleanMissionStatus.nMssn || (_installed && !canvas))
+	// note: an already ended mission is never continued, its data has been moved to the history
+	if (mission === null || mission.id !== res.cleanMissionStatus.nMssn || (mission.time && mission.time.ended !== undefined) || (_installed && !canvas))
 	{
 		mission = { id: res.cleanMissionStatus.nMssn, restored: false, home: false, time: {}, status: {}, pos: {}, map: {}, path: [] };
 		adapter.log.info('Roomba has started a new mission (#' + mission.id + ').');
@@ -809,7 +810,7 @@ function mapMission(res)
 	// save map and path
 	library._setValue('missions.current.mapImage', mission.map && mission.map.img ? mission.map.img : '');
 	library._setValue('missions.current.mapHTML', mission.map && mission.map.img ? '<img src="' + mission.map.img + '" /style="width:100%;">' : '');
-	library._setValue('missions.current.mapSize', JSON.stringify(mission.map && mission.map.size ? mission.map.size : mapSize));
+	library._setValue('missions.current.mapSize', mission.map && mission.map.size ? JSON.stringify(mission.map.size) : '');
 	library._setValue('missions.current.path', JSON.stringify(mission.path));
 
 	// additional mission status information
@@ -876,7 +877,7 @@ function rotateImage(img, radiant)
  * Ends and saves a mission.
  *
  */
-function endMission(mission)
+function endMission(endedMission)
 {
 	let history = [];
 
@@ -886,38 +887,40 @@ function endMission(mission)
 		history = state != null && state.val != '' ? JSON.parse(state.val) : history;
 
 		// add end time
-		mission.time.ended = Math.floor(Date.now()/1000);
-		mission.time.endedDateTime = library.getDateTime(mission.time.ended*1000);
-		library._setValue('missions.current.endedDateTime', mission.time.endedDateTime);
-		library._setValue('missions.current.ended', mission.time.ended);
+		endedMission.time.ended = Math.floor(Date.now()/1000);
+		endedMission.time.endedDateTime = library.getDateTime(endedMission.time.ended*1000);
+		library._setValue('missions.current.endedDateTime', endedMission.time.endedDateTime);
+		library._setValue('missions.current.ended', endedMission.time.ended);
 
 		// save data
-		library._setValue('missions.current._data', JSON.stringify(mission));
+		library._setValue('missions.current._data', JSON.stringify(endedMission));
 
 		// check for duplicates
 		let duplicate = false;
 		history.forEach(function(entry, i)
 		{
-			if (entry.id == mission.id)
+			if (entry.id == endedMission.id)
 			{
 				adapter.log.info('Mission has already been saved, but will be overwritten.');
-				history[i] = mission;
+				history[i] = endedMission;
 				duplicate = true;
 			}
 		});
 
 		if (duplicate === false)
 		{
-			delete mission.path;
-			history.push(mission);
+			delete endedMission.path;
+			history.push(endedMission);
 		}
 
 		// save history
 		library._setValue('missions.history', JSON.stringify(history.slice(0, 199))); // only keep 200 entries
-		adapter.log.info('Mission #' + mission.id + ' saved.');
+		adapter.log.info('Mission #' + endedMission.id + ' saved.');
 
-		// reset mission
-		mission = null;
+		// reset mission (only if it has not been replaced by a new mission in the meantime)
+		if (mission === endedMission)
+			mission = null;
+
 		canvas = null;
 		map = null;
 
