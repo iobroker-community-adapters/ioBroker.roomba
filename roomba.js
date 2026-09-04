@@ -336,44 +336,44 @@ function roomba()
 	{
 		icons = {roomba: getImage(__dirname + '/img/roomba.png'), home: getImage(__dirname + '/img/home.png')};
 		offset = icons.roomba.width;
-
-		adapter.getState('missions.current._data', function(err, state)
-		{
-			// restore last session
-			if (state !== null && state.val !== '')
-			{
-				mission = JSON.parse(state.val);
-				adapter.log.info('Restored last mission (#' + mission.id + ').');
-				adapter.log.debug('Restored mission: ' + state.val);
-				mission.restored = true;
-			}
-
-			// robot mission
-			robot.on('mission', function(res)
-			{
-				if (adapter.config.debug)
-					adapter.log.debug('DEBUG MISSION DATA: ' + JSON.stringify(res));
-
-				// interrupt if no position is given
-				if (res.pose === null || res.pose === undefined) return;
-				res.cleanMissionStatus.phase = getCleaningPhase(res.cleanMissionStatus.phase);
-
-				// map mission
-				if (['stop', 'charge', 'stuck'].indexOf(res.cleanMissionStatus.phase) === -1)
-					mapMission(res);
-
-				// end mission after a while, if 'hmPostMsn' was not received
-				else if (mission !== null && mission.time !== undefined && mission.time.ended === undefined && endLoop <= 1000)
-					endLoop++;
-
-				else if (mission !== null && mission.time !== undefined && mission.time.ended === undefined && endLoop > 1000)
-				{
-					endMission(mission);
-					endLoop = 0;
-				}
-			});
-		});
 	}
+
+	adapter.getState('missions.current._data', function(err, state)
+	{
+		// restore last session
+		if (state !== null && state.val !== '')
+		{
+			mission = JSON.parse(state.val);
+			adapter.log.info('Restored last mission (#' + mission.id + ').');
+			adapter.log.debug('Restored mission: ' + state.val);
+			mission.restored = true;
+		}
+
+		// robot mission
+		robot.on('mission', function(res)
+		{
+			if (adapter.config.debug)
+				adapter.log.debug('DEBUG MISSION DATA: ' + JSON.stringify(res));
+
+			// interrupt if no position is given
+			if (res.pose === null || res.pose === undefined) return;
+			res.cleanMissionStatus.phase = getCleaningPhase(res.cleanMissionStatus.phase);
+
+			// map mission
+			if (['stop', 'charge', 'stuck'].indexOf(res.cleanMissionStatus.phase) === -1)
+				mapMission(res);
+
+			// end mission after a while, if 'hmPostMsn' was not received
+			else if (mission !== null && mission.time !== undefined && mission.time.ended === undefined && endLoop <= 1000)
+				endLoop++;
+
+			else if (mission !== null && mission.time !== undefined && mission.time.ended === undefined && endLoop > 1000)
+			{
+				endMission(mission);
+				endLoop = 0;
+			}
+		});
+	});
 }
 
 
@@ -677,7 +677,7 @@ function updPreferences(preferences)
 function mapMission(res)
 {
 	// restore last session
-	if (mission !== null && mission.id === res.cleanMissionStatus.nMssn && !mission.time.ended && (!canvas || !map))
+	if (_installed && mission !== null && mission.id === res.cleanMissionStatus.nMssn && !mission.time.ended && (!canvas || !map))
 	{
 		adapter.log.info('Roomba has resumed a previous mission (#' + mission.id + ').');
 		mission.pos = {
@@ -691,8 +691,8 @@ function mapMission(res)
 		map.beginPath();
 	}
 
-	// create new map once mission starts
-	if (mission === null || mission.id !== res.cleanMissionStatus.nMssn || !canvas)
+	// create new mission (and map, if canvas is available) once mission starts
+	if (mission === null || mission.id !== res.cleanMissionStatus.nMssn || (_installed && !canvas))
 	{
 		mission = { id: res.cleanMissionStatus.nMssn, restored: false, home: false, time: {}, status: {}, pos: {}, map: {}, path: [] };
 		adapter.log.info('Roomba has started a new mission (#' + mission.id + ').');
@@ -710,9 +710,12 @@ function mapMission(res)
 		library._setValue('missions.current.endedDateTime', '');
 
 		// create canvas for map
-		canvas = createCanvas(mapSize.width, mapSize.height);
-		map = canvas.getContext('2d');
-		map.beginPath();
+		if (_installed)
+		{
+			canvas = createCanvas(mapSize.width, mapSize.height);
+			map = canvas.getContext('2d');
+			map.beginPath();
+		}
 	}
 
 	// last position
@@ -723,88 +726,90 @@ function mapMission(res)
 	mission.status = Object.assign({}, res.cleanMissionStatus, {sqm: parseFloat((res.cleanMissionStatus.sqft / 10.764).toFixed(2))});
 	mission.pos.current = {theta: 180-res.pose.theta, x: mapCenter.h + res.pose.point.x + nPos.x, y: mapCenter.v - res.pose.point.y + nPos.y};
 
-	//
-	if (!canvas || !map)
+	// draw map, only possible if canvas is installed
+	if (_installed)
 	{
-		adapter.log.warn('Error: No map given to draw on!');
-		adapter.log.debug('Adapter Mission data: ' + JSON.stringify(mission));
-		adapter.log.debug('Roomba mission data: ' + JSON.stringify(res));
-		return false;
-	}
-
-	// place home icon
-	if (mission.pos && mission.pos.last && mission.pos.last.x && !mission.home)
-	{
-		map.drawImage(icons.home.canvas, mapCenter.h + mission.pos.current.x - icons.home.width/2, mapCenter.v + mission.pos.current.y - icons.home.height/2, icons.home.width, icons.home.height);
-		mission.home = true;
-	}
-
-	// draw position on map
-	try
-	{
-		// resize image if robot moves outside
-		if (mission.pos.current.x < offset || mission.pos.current.y < offset || mission.pos.current.x > mapSize.width-offset || mission.pos.current.y > mapSize.height-offset)
+		if (!canvas || !map)
 		{
-			let nSize = {width: mapSize.width, height: mapSize.height};
-			let d = {x: 0, y: 0};
-
-			if (mission.pos.current.x > mapSize.width-offset) {nSize.width += 100}
-			if (mission.pos.current.y > mapSize.height-offset) {nSize.height += 100}
-			if (mission.pos.current.x < offset) {nSize.width += 100; d.x = 100; nPos.x += 100; mission.pos.last.x += d.x; mission.pos.current.x += d.x}
-			if (mission.pos.current.y < offset) {nSize.height += 100; d.y = 100; nPos.y += 100; mission.pos.last.y += d.y; mission.pos.current.y += d.y}
-
-			// resize map
-			canvasTmp = createCanvas(nSize.width, nSize.height);
-			mapTmp = canvasTmp.getContext('2d');
-			mapTmp.drawImage(canvas, d.x, d.y);
-
-			// remap canvas and set new size
-			canvas = canvasTmp;
-			map = mapTmp;
-			mapSize = {width: nSize.width, height: nSize.height};
+			adapter.log.warn('Error: No map given to draw on!');
+			adapter.log.debug('Adapter Mission data: ' + JSON.stringify(mission));
+			adapter.log.debug('Roomba mission data: ' + JSON.stringify(res));
+			return false;
 		}
 
-		// robot just started
-		if (mission.pos.last === undefined)
+		// place home icon
+		if (mission.pos && mission.pos.last && mission.pos.last.x && !mission.home)
 		{
-			map.fillStyle = pathColor;
-			map.fillRect(mission.pos.current.x, mission.pos.current.y, 1, 1);
+			map.drawImage(icons.home.canvas, mapCenter.h + mission.pos.current.x - icons.home.width/2, mapCenter.v + mission.pos.current.y - icons.home.height/2, icons.home.width, icons.home.height);
+			mission.home = true;
 		}
 
-		// robot moving
-		else
+		// draw position on map
+		try
 		{
-			map.lineWidth = 2;
-			map.strokeStyle = pathColor;
-			map.moveTo(mission.pos.last.x, mission.pos.last.y);
-			map.lineTo(mission.pos.current.x, mission.pos.current.y);
-			map.stroke();
+			// resize image if robot moves outside
+			if (mission.pos.current.x < offset || mission.pos.current.y < offset || mission.pos.current.x > mapSize.width-offset || mission.pos.current.y > mapSize.height-offset)
+			{
+				let nSize = {width: mapSize.width, height: mapSize.height};
+				let d = {x: 0, y: 0};
+
+				if (mission.pos.current.x > mapSize.width-offset) {nSize.width += 100}
+				if (mission.pos.current.y > mapSize.height-offset) {nSize.height += 100}
+				if (mission.pos.current.x < offset) {nSize.width += 100; d.x = 100; nPos.x += 100; mission.pos.last.x += d.x; mission.pos.current.x += d.x}
+				if (mission.pos.current.y < offset) {nSize.height += 100; d.y = 100; nPos.y += 100; mission.pos.last.y += d.y; mission.pos.current.y += d.y}
+
+				// resize map
+				canvasTmp = createCanvas(nSize.width, nSize.height);
+				mapTmp = canvasTmp.getContext('2d');
+				mapTmp.drawImage(canvas, d.x, d.y);
+
+				// remap canvas and set new size
+				canvas = canvasTmp;
+				map = mapTmp;
+				mapSize = {width: nSize.width, height: nSize.height};
+			}
+
+			// robot just started
+			if (mission.pos.last === undefined)
+			{
+				map.fillStyle = pathColor;
+				map.fillRect(mission.pos.current.x, mission.pos.current.y, 1, 1);
+			}
+
+			// robot moving
+			else
+			{
+				map.lineWidth = 2;
+				map.strokeStyle = pathColor;
+				map.moveTo(mission.pos.last.x, mission.pos.last.y);
+				map.lineTo(mission.pos.current.x, mission.pos.current.y);
+				map.stroke();
+			}
+
+			// copy map
+			image = createCanvas(canvas.width, canvas.height);
+			img = image.getContext('2d');
+			img.drawImage(canvas, 0, 0);
+
+			// add robot to copied map
+			img.drawImage(rotateImage(icons.roomba.canvas, mission.pos.current.theta), mission.pos.current.x - icons.roomba.width/2, mission.pos.current.y - icons.roomba.height/2, icons.roomba.width, icons.roomba.height);
+			mission.map = {img: image.toDataURL(), size: mapSize};
 		}
-
-		// copy map
-		image = createCanvas(canvas.width, canvas.height);
-		img = image.getContext('2d');
-		img.drawImage(canvas, 0, 0);
-
-		// add robot to copied map
-		img.drawImage(rotateImage(icons.roomba.canvas, mission.pos.current.theta), mission.pos.current.x - icons.roomba.width/2, mission.pos.current.y - icons.roomba.height/2, icons.roomba.width, icons.roomba.height);
-		mission.map = {img: image.toDataURL(), size: mapSize};
+		catch(e)
+		{
+			adapter.log.warn(e.message);
+			adapter.log.warn(e.stack);
+		}
 	}
-	catch(e)
-	{
-		adapter.log.warn(e.message);
-		adapter.log.warn(e.stack);
-	}
-
 
 	// add to path
 	if (mission && mission.path)
 		mission.path.push(mission.pos.current);
 
 	// save map and path
-	library._setValue('missions.current.mapImage', mission.map.img);
-	library._setValue('missions.current.mapHTML', '<img src="' + mission.map.img + '" /style="width:100%;">');
-	library._setValue('missions.current.mapSize', JSON.stringify(mission.map.size));
+	library._setValue('missions.current.mapImage', mission.map && mission.map.img ? mission.map.img : '');
+	library._setValue('missions.current.mapHTML', mission.map && mission.map.img ? '<img src="' + mission.map.img + '" /style="width:100%;">' : '');
+	library._setValue('missions.current.mapSize', JSON.stringify(mission.map && mission.map.size ? mission.map.size : mapSize));
 	library._setValue('missions.current.path', JSON.stringify(mission.path));
 
 	// additional mission status information
@@ -817,7 +822,7 @@ function mapMission(res)
 	library._setValue('missions.current.phase', mission.status.phase);
 
 	// save data
-	library._setValue('missions.current._data', JSON.stringify(Object.assign(mission, {map: {img: canvas != undefined ? canvas.toDataURL() : '', size: mapSize}})));
+	library._setValue('missions.current._data', JSON.stringify(Object.assign(mission, {map: {img: _installed && canvas != undefined ? canvas.toDataURL() : '', size: mapSize}})));
 	return true;
 }
 
