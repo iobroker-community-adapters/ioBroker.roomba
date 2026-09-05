@@ -684,10 +684,21 @@ function mapMission(res)
 			last: {theta: mission.pos.current.theta, x: mission.pos.current.x, y: mission.pos.current.y}
 		};
 
-		// create canvas for map
-		previous = getImage(mission.map.img);
-		canvas = previous.canvas;
-		map = previous.ctx;
+		// restore the map of the previous session
+		if (mission.map && mission.map.img)
+		{
+			previous = getImage(mission.map.img);
+			canvas = previous.canvas;
+			map = previous.ctx;
+		}
+
+		// no map has been saved (e.g. the mission has been tracked without canvas), thus start a new one
+		else
+		{
+			canvas = createCanvas(mapSize.width, mapSize.height);
+			map = canvas.getContext('2d');
+		}
+
 		map.beginPath();
 	}
 
