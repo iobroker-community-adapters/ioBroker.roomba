@@ -822,8 +822,8 @@ function mapMission(res)
 	library._setValue('missions.current.initiator', mission.status.initiator);
 	library._setValue('missions.current.phase', mission.status.phase);
 
-	// save data
-	library._setValue('missions.current._data', JSON.stringify(Object.assign(mission, {map: {img: _installed && canvas != undefined ? canvas.toDataURL() : '', size: mapSize}})));
+	// save data (without canvas there is no map at all, thus also no map size to restore)
+	library._setValue('missions.current._data', JSON.stringify(Object.assign(mission, {map: _installed ? {img: canvas != undefined ? canvas.toDataURL() : '', size: mapSize} : {}})));
 	return true;
 }
 
