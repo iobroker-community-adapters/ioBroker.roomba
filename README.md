@@ -39,9 +39,11 @@ The following features come with this adapter:
 
 
 ## Installation
-ioBroker.roomba needs [canvas](https://www.npmjs.com/package/canvas) in order to draw maps of the Roomba missions. ioBroker will try to install this dependency with ioBroker.roomba installation.
+[canvas](https://www.npmjs.com/package/canvas) is an **optional** dependency. It is only needed to draw the map images (`missions.current.mapImage` / `missions.current.mapHTML`) of the Roomba missions. It is **not** listed as a dependency in `package.json` and is therefore **not** installed automatically - if you don't install it, the adapter will simply log a warning on startup and run without map drawings. All other states, including the raw mission path coordinates (`missions.current.path`), are collected and updated regardless of whether `canvas` is installed.
 
-Though, you probably have to install package dependencies of canvas (and canvas itself) with the following command:
+If installing `canvas` causes problems on your system (e.g. `sudo npm install canvas --unsafe-perm=true` failing due to missing native build dependencies), you can just skip it and use the adapter without map images.
+
+If you do want map images, you probably have to install package dependencies of canvas (and canvas itself) with the following command:
 
 ### Linux
 ```
@@ -310,6 +312,8 @@ You may edit the variable ```message``` to any notification you would like to re
 -->
 
 ### **WORK IN PROGRESS**
+- (jb-io) Mission tracking (`missions.current.path` and other mission states) now works even if `canvas` is not installed; previously the whole mission listener was skipped without `canvas`, leaving `missions.current.path` empty. Only the map image drawing (`mapImage` / `mapHTML`) still requires `canvas`.
+- (jb-io) Fixed a mission that was already ended and saved to the history being continued instead of starting a new one, which could leave `missions.current.path` empty.
 - (copilot) Adapter requires node.js >= 22 now
 - (iobroker-bot) Adapter requires node.js >= 20 now.
 - (copilot) Adapter requires admin >= 7.7.22 now
